@@ -12,7 +12,7 @@ To work with the GCP modules, you’ll first need to get some credentials in the
 - Download JSON credentials
 
 
-# Environment Setup
+# Setup
 
 ### Environment Variables
 
@@ -29,6 +29,8 @@ pip install google-auth
 source ~/secure/environment/ansible/google-cloud-platform/vars
 env | grep GCP
 ```
+
+# Testing 
 
 ### Create GCP VM Instance
 
