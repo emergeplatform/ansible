@@ -111,6 +111,15 @@ scopes:
     - google-cloud-platform
 ```
 
+#### Tasks
+
+1. allocate an ip address
+2. create hard drive
+3. create a vm instance
+4. wait for ssh to come up
+5. add host to groupname
+ 
+
 #### Command line
 ```
 ansible-playbook google-cloud-platform/tests/test.yml
