@@ -1,6 +1,18 @@
 Google Cloud Platform
 =========
 
+### Interesting Facts
+
+- Google overhead is ~12% including cafeterias
+- 75,000 machines per data center
+- Network bandwidth 1 petabit per second (more data than the entire internet)
+- Software designed networking principles abstract physical network features and allow users to program custom networks
+- Networking technology (IPv6, fiber cable, etc) is designed to keep up with the growing global capacity
+- Low latency and high throughput networking technology allows users to reliably access storage and computing resources
+- Each data center is running and connected on B4 internet backbone (google’s privately owned highly efficient SDN-based internet backbone)
+- Hard drives and SSD failure are securely replaced and destroyed daily following a secure procedures tested regularally for effectiveness
+
+
 # Credentials for Authentication
 
 ### GCP Service Account
