@@ -59,5 +59,9 @@ changed: [localhost]
 PLAY RECAP ****************************************************************************************************************************************************************************************
 localhost                  : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
+### External IP Address
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-expternal-ip-address.png?raw=true)
 
+### GCP Hard Drive
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-hd.png?raw=true)
 
