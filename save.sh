@@ -1,3 +1,3 @@
 git add --all .
-git commit -m save
+git commit -m updated
 git push
