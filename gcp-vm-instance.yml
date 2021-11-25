@@ -1,9 +1,0 @@
----
-- name: create google cloud platform vm instance
-  hosts: localhost
-  remote_user: root
-  gather_facts: false
-  roles:
-    # - { role: google-cloud-platform }
-    - { role: google-cloud-platform, vm_name: gce-vm-1, disk_name: gce-hd-1, ip_name: gce-ip-1 }
-    - { role: google-cloud-platform, vm_name: gce-vm-2, disk_name: gce-hd-2, ip_name: gce-ip-2 }

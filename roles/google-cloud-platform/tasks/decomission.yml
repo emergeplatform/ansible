@@ -1,0 +1,18 @@
+---
+- name: delete an instance
+  gcp_compute_instance:
+    name: "{{ instance_name }}"
+    zone: "{{ zone }}"
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+    state: absent
+
+- name: delete an address
+  gcp_compute_address:
+    name: "{{ instance_name }}"
+    region: "{{ region }}"
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+    state: absent

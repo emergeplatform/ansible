@@ -1,13 +1,11 @@
 ---
 # vars file for google-cloud-platform
-
-vm_name: test-gcp-vm
-disk_name: test-hard-drive
-ip_name: test-ip-address
+instance_name: test-gcp-vm-1
 machine_type: n1-standard-1
 disk_size_gb: 100
 zone: "us-central1-a"
 region: "us-central1"
+ip_cidr_range: 20.15.0.0/20
 
 
 service_account_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"

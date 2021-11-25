@@ -1,0 +1,41 @@
+---
+
+- name: create virtual private network
+  gcp_compute_network:
+    name: virtual-private-network
+    auto_create_subnetworks: yes
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+    state: present
+  register: network
+
+- name: create virtual private subnetwork
+  gcp_compute_subnetwork:
+    name: virtual-private-network-subnet
+    region: "{{ region }}"
+    network: "{{ network }}"
+    ip_cidr_range: "{{ ip_cidr_range }}"
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+    state: present
+  register: subnet
+
+- name: allow tcp port 80 and 22
+  gcp_compute_firewall:
+    name: virtual-private-network-firewall
+    network: "{{ network }}"
+    allowed:
+    - ip_protocol: tcp
+      ports: ['80','22']
+    target_tags:
+      - virtual-private-network
+    source_ranges: ['0.0.0.0/0']
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+    state: present
+  register: firewall
+
+
