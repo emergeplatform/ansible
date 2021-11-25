@@ -13,6 +13,15 @@ To work with the GCP modules, you’ll first need to get some credentials in the
 
 ![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-key.png?raw=true)
 
+Once your add new key, the browser will begin to download the .json file to your systems download directory.
+
+Make sure to move and rename the file to a secure location, separate from the project directory.
+
+```
+mv ~/Downloads/your-project-id-xxxxxxx.json ~/secure/gcp-service-account.json
+```
+
+
 
 # Setup
 
