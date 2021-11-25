@@ -65,6 +65,26 @@ GCP_PROJECT_ID=your-project-id
 
 # Testing 
 
+### Variables
+
+```yaml
+---
+# vars file for google-cloud-platform
+vm_name: test-gcp-vm
+disk_name: test-hard-drive
+ip_name: test-ip-address
+machine_type: n1-standard-1
+zone: "us-central1-a"
+region: "us-central1"
+service_account_file: "{{ lookup('env', 'GCP_SERVICE_ACCOUNT_FILE') }}"
+project: "{{ lookup('env', 'GCP_PROJECT_ID') }}"
+auth_kind: serviceaccount
+disk_size_gb: 100
+disk_img: projects/centos-cloud/global/images/centos-8-v20211105
+scopes:
+  - https://www.googleapis.com/auth/compute
+```
+
 ### Create GCP VM Instance
 
 ```
