@@ -8,8 +8,8 @@ Service Accounts (Recommended): Use JSON service accounts with specific permissi
 
 To work with the GCP modules, you’ll first need to get some credentials in the JSON format:
 
-- Create a Service Account
-- Download JSON credentials
+- [Create a Service Account] (https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount)
+- [Download JSON credentials] (https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=6262490#serviceaccounts)
 
 
 # Setup
@@ -24,10 +24,19 @@ export GCP_SERVICE_ACCOUNT_FILE=~/secure/gcp-service-account.json
 ### Installation
 
 ```
+# install ansible and pip
 sudo dnf install ansible pip
+
+# install google auth plugin
 pip install google-auth
+
+# source environment variables
 source ~/secure/environment/ansible/google-cloud-platform/vars
+
+#verify environment variables are set
 env | grep GCP
+GCP_SERVICE_ACCOUNT_FILE=~/secure/gcp-service-account.json
+GCP_PROJECT_ID=your-project-id
 ```
 
 # Testing 
