@@ -17,6 +17,8 @@ Once your add new key, the browser will begin to download the .json file to your
 
 Make sure to move and rename the file to a secure location, separate from the project directory.
 
+### Move credentials to secure folder
+
 ```
 mv ~/Downloads/your-project-id-xxxxxxx.json ~/secure/gcp-service-account.json
 ```
