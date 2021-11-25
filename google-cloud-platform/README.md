@@ -1,20 +1,17 @@
 Google Cloud Platform
 =========
 
-# Credentials
+# Credentials for Authentication
 
-### GCP Service Account Key Download
-
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-key.png?raw=true)
-
-It’s easy to create a GCP account with credentials for Ansible. You have multiple options to get your credentials - here are two of the most common options:
-
-Service Accounts (Recommended): Use JSON service accounts with specific permissions.
+### GCP Service Account
 
 To work with the GCP modules, you’ll first need to get some credentials in the JSON format:
 
 - [Create a Service Account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatinganaccount)
 - [Download JSON credentials](https://support.google.com/cloud/answer/6158849?hl=en&ref_topic=6262490#serviceaccounts)
+
+
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-key.png?raw=true)
 
 
 # Setup
