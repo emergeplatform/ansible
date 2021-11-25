@@ -12,13 +12,13 @@
   loop: "{{ hosts }}"
   when: operation == "provision"
 
-# decomission all hosts
-- include_tasks: decomission.yml
+# decommission all hosts
+- include_tasks: decommission.yml
   vars:
     instance_name: "{{ item.host }}"
   loop: "{{ hosts }}"
-  when: operation == "decomission"
+  when: operation == "decommission"
 
 # remove virtual private network
 - import_tasks: network-delete.yml
-  when: operation == "decomission" and removeNetwork == true
+  when: operation == "decommission" and removeNetwork == true
