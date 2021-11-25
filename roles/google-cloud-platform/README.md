@@ -106,30 +106,16 @@ scopes:
 
 ### Create GCP VM Instance
 
-#### Playbook
-
-```yml
----
-- name: create google cloud platform vm instance
-  hosts: localhost
-  remote_user: root
-  gather_facts: false
-  roles:
-    - google-cloud-platform
-```
-
 #### Tasks
 
 1. allocate an ip address
 2. create hard drive
 3. create a vm instance
-4. wait for ssh to come up
-5. add host to groupname
  
 
 #### Command line
 ```
-ansible-playbook google-cloud-platform/tests/test.yml
+ansible-playbook gcp-vm-instance.yml
 ```
 
 The playbook role will create a GCP VM like displayed below.
@@ -145,19 +131,22 @@ TASK [google-cloud-platform : allocate an ip address] **************************
 ok: [localhost]
 
 TASK [google-cloud-platform : create a hard drive] ************************************************************************************************************************************************
-changed: [localhost]
-
-TASK [google-cloud-platform : create a vm instance] ***********************************************************************************************************************************************
-changed: [localhost]
-
-TASK [google-cloud-platform : wait for ssh to come up] ********************************************************************************************************************************************
 ok: [localhost]
 
-TASK [google-cloud-platform : add host to groupname] **********************************************************************************************************************************************
-changed: [localhost]
+TASK [google-cloud-platform : create a vm instance] ***********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [google-cloud-platform : allocate an ip address] *********************************************************************************************************************************************
+ok: [localhost]
+
+TASK [google-cloud-platform : create a hard drive] ************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [google-cloud-platform : create a vm instance] ***********************************************************************************************************************************************
+ok: [localhost]
 
 PLAY RECAP ****************************************************************************************************************************************************************************************
-localhost                  : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 
 ```
 ### External IP Address
 ![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-expternal-ip-address.png?raw=true)
