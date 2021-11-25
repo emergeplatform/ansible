@@ -34,6 +34,8 @@ env | grep GCP
 
 ### Create GCP VM Instance
 
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vm.png?raw=true)
+
 ```
 ansible-playbook google-cloud-platform/tests/test.yml
 
