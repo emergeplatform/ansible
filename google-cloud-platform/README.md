@@ -67,11 +67,17 @@ GCP_PROJECT_ID=your-project-id
 
 ### Create GCP VM Instance
 
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vm.png?raw=true)
-
 ```
 ansible-playbook google-cloud-platform/tests/test.yml
+```
 
+The playbook role will create a GCP VM like displayed below.
+
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vm.png?raw=true)
+
+### Example output
+
+```
 PLAY [create google cloud platform vm instance] ***************************************************************************************************************************************************
 
 TASK [google-cloud-platform : allocate an ip address] *********************************************************************************************************************************************
