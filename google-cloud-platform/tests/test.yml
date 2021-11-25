@@ -1,0 +1,7 @@
+---
+- name: create google cloud platform vm instance
+  hosts: localhost
+  remote_user: root
+  gather_facts: false
+  roles:
+    - google-cloud-platform
