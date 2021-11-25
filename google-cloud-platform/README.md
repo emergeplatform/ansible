@@ -24,11 +24,13 @@ To work with the GCP modules, you’ll first need to get some credentials in the
 
 In this example, we use "ansible-gcp-automation" as the service account name and choose Compute Engine Admin as the role. This provides ansible with full control of all Compute Engine resources.
 
+#### Serice Account Role
+
 ![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-role.png?raw=true)
 
+#### Service Account Key
+
 ![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-key.png?raw=true)
-
-
 
 Once your add new key, the browser will begin to download the .json file to your systems download directory.
 
