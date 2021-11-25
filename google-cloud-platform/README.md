@@ -5,7 +5,7 @@ Google Cloud Platform
 
 ### GCP Service Account Key Download
 
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vm.png?raw=true)
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-service-account-key.png?raw=true)
 
 It’s easy to create a GCP account with credentials for Ansible. You have multiple options to get your credentials - here are two of the most common options:
 
