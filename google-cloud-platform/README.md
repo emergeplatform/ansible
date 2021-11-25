@@ -99,6 +99,19 @@ scopes:
 
 ### Create GCP VM Instance
 
+#### Playbook
+
+```yml
+---
+- name: create google cloud platform vm instance
+  hosts: localhost
+  remote_user: root
+  gather_facts: false
+  roles:
+    - google-cloud-platform
+```
+
+#### Command line
 ```
 ansible-playbook google-cloud-platform/tests/test.yml
 ```
