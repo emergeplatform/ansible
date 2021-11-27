@@ -6,5 +6,21 @@
     "zone": "us-central1-b",
     "region": "us-central1",
     "ip_cidr_range": "20.15.0.0/20",   
-    "hosts":[]
+    "updateSSHConfig": false,
+    "hosts":[{
+        "host": "gcp-vm-1"
+    },
+    {
+        "host": "gcp-vm-2"
+    },
+    {
+        "host": "gcp-vm-3"
+    },
+    {
+        "host": "gcp-vm-4"
+    },
+    {
+        "host": "gcp-vm-5"
+    }
+]
 }

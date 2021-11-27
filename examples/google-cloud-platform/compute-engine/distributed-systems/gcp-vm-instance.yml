@@ -7,5 +7,30 @@
   vars:
     operation: null
   tasks:
+    - file:
+        path: ~/.ssh/known_hosts
+        state: absent
+    
   roles:
     - role: google-cloud-platform
+
+
+- name: configure load balancer
+  hosts: gcp-vm-1
+  connection: ssh
+  become: true
+  tasks:
+
+- name: configure application servers
+  hosts: gcp-vm-2,gcp-vm-3,gcp-vm-4
+  connection: ssh
+  become: true
+  tasks:
+    - import_tasks: roles/google-cloud-platform/tasks/service-application-server.yml
+
+- name: configure databases
+  hosts: gcp-vm-5
+  connection: ssh
+  become: true
+  tasks:
+    - import_tasks: roles/google-cloud-platform/tasks/database-postgres-server.yml

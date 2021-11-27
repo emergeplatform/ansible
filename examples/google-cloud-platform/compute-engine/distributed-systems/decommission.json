@@ -5,7 +5,8 @@
     "disk_size_gb": 50,
     "zone": "us-central1-b",
     "region": "us-central1",
-    "ip_cidr_range": "20.15.0.0/20",   
+    "ip_cidr_range": "20.15.0.0/20",
+    "updateSSHConfig": false,
     "hosts":[{
             "host": "gcp-vm-1"
         },

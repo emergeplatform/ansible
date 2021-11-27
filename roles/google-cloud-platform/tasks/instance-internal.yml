@@ -1,0 +1,25 @@
+---
+
+- name: create a new vm instance
+  gcp_compute_instance:
+    state: present
+    name: "{{ instance_name }}"
+    machine_type: "{{ machine_type }}"
+    disks:
+    - auto_delete: true
+      boot: true
+      source: "{{ disk }}"
+    network_interfaces:
+    - network: "{{ network }}"
+    zone: "{{ zone }}"
+    tags:
+      items:
+        - virtual-private-network
+    project: "{{ project }}"
+    auth_kind: "{{ auth_kind }}"
+    service_account_file: "{{ service_account_file }}"
+  register: instance
+
+
+- name: add host to groupname
+  add_host: hostname={{ instance_name }} ansible_host={{ instance.networkInterfaces[0].networkIP }} groupname={{ instance_name }} instance={{ instance }}

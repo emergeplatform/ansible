@@ -1,15 +1,5 @@
 ---
 
-- name: create an ip address
-  gcp_compute_address:
-    name: "{{ instance_name }}"
-    region: "{{ region }}"
-    project: "{{ project }}"
-    auth_kind: "{{ auth_kind }}"
-    service_account_file: "{{ service_account_file }}"
-    state: present
-  register: address
-
 - name: create a new hard drive
   gcp_compute_disk:
     name: "{{ instance_name }}"
@@ -22,36 +12,10 @@
     state: present
   register: disk
 
-- name: create a new vm instance
-  gcp_compute_instance:
-    state: present
-    name: "{{ instance_name }}"
-    machine_type: "{{ machine_type }}"
-    disks:
-    - auto_delete: true
-      boot: true
-      source: "{{ disk }}"
-    network_interfaces:
-    - network: "{{ network }}"
-      subnetwork: "{{ subnet }}"
-      access_configs:
-      - name: External NAT
-        nat_ip: "{{ address }}"
-        type: ONE_TO_ONE_NAT
-    zone: "{{ zone }}"
-    tags:
-      items:
-        - virtual-private-network
-    project: "{{ project }}"
-    auth_kind: "{{ auth_kind }}"
-    service_account_file: "{{ service_account_file }}"
-  register: instance
-  
+- import_tasks: instance-public.yml
+  when: external_ip == true
 
-# - debug: var=[network, subnet, firewall, address, disk, instance]
+- import_tasks: instance-internal.yml
+  when: external_ip == false
 
-# - name: wait for ssh to come up
-#   wait_for: host={{ address.address }} port=22 delay=10 timeout=60
 
-# - name: add host to groupname
-#   add_host: hostname={{ address.address }} groupname=new_instances

@@ -1,0 +1,53 @@
+---
+- name: install postgresql database server
+  dnf:
+    name:
+      - epel-release #to install sqlight
+      - sqlite-devel
+      - nfs-utils
+      - nmap
+      - postgresql
+      - postgresql-server
+    state: present
+
+- shell: postgresql-setup --initdb --unit postgresql
+  ignore_errors: true
+
+- name: configure postgres service to listen on all addresses
+  lineinfile:
+    path: /var/lib/pgsql/data/postgresql.conf
+    regexp: '^listen_addresses '
+    insertafter: '^#listen_addresses'
+    line: listen_addresses = '*'
+
+- name: ensure ipv4 is configured for database connection
+  lineinfile:
+    path: /var/lib/pgsql/data/pg_hba.conf
+    regexp: 'host    all             all             127.0.0.1/32            ident'
+    insertafter: '^# IPv4 local connections:'
+    line:          'host    all             all             0.0.0.0/0               md5'
+
+- shell: psql -c "CREATE USER db_admin WITH PASSWORD 'fedorarocks!';"
+  become_user: postgres
+  register: shell
+  ignore_errors: true
+  
+- shell: psql -c "ALTER USER db_admin WITH SUPERUSER;"
+  become_user: postgres
+  register: shell
+  ignore_errors: true
+
+- lineinfile:
+    path: /etc/exports
+    line: /var/lib/pgadmin 10.128.0.0/20(rw,no_root_squash)
+  ignore_errors: yes
+
+- service:
+    name: nfs-server
+    state: restarted
+    enabled: yes
+
+- service:
+    name: postgresql
+    state: restarted
+    enabled: yes

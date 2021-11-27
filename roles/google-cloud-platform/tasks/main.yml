@@ -9,6 +9,7 @@
 - include_tasks: provision.yml
   vars:
     instance_name: "{{ item.host }}"
+    external_ip: "{{ item.external_ip }}"
   loop: "{{ hosts }}"
   when: operation == "provision"
 

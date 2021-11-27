@@ -1,0 +1,37 @@
+---
+
+- shell: rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm
+  register: shell
+  ignore_errors: yes
+
+- name: install application server
+  dnf:
+    name:
+      - nfs-utils
+      - policycoreutils-python-utils #needed by pgadmin4
+      - pgadmin4
+      - postgresql
+    state: present
+
+- shell:  "{{ item }}"
+  ignore_errors: true
+  loop:
+    - mkdir /mnt/pgadmin
+    - umount /mnt/pgadmin
+    - mount {{ hostvars['gcp-vm-5'].ansible_host }}:/var/lib/pgadmin /mnt/pgadmin
+    - mv /var/lib/pgadmin /var/lib/pgadmin.backup
+    - ln -s /mnt/pgadmin /var/lib/pgadmin
+    - setenforce 0
+    - systemctl stop firewalld
+
+# run in non-interactive mode 
+- shell: /usr/pgadmin4/bin/setup-web.sh --yes
+  register: shell
+  environment:
+    PGADMIN_SETUP_EMAIL: admin@emergeplatform.com
+    PGADMIN_SETUP_PASSWORD: "@linux-rocks!"
+
+- service:
+    name: httpd
+    state: restarted
+    enabled: yes

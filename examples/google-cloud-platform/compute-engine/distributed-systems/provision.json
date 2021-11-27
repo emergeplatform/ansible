@@ -4,21 +4,27 @@
     "disk_size_gb": 50,
     "zone": "us-central1-b",
     "region": "us-central1",
-    "ip_cidr_range": "20.15.0.0/20",   
+    "ip_cidr_range": "20.15.0.0/20",
+    "updateSSHConfig": true,
     "hosts":[{
-            "host": "gcp-vm-1"
+            "host": "gcp-vm-1",
+            "external_ip": true
         },
         {
-            "host": "gcp-vm-2"
+            "host": "gcp-vm-2",
+            "external_ip": false
         },
         {
-            "host": "gcp-vm-3"
+            "host": "gcp-vm-3",
+            "external_ip": false
         },
         {
-            "host": "gcp-vm-4"
+            "host": "gcp-vm-4",
+            "external_ip": false
         },
         {
-            "host": "gcp-vm-5"
+            "host": "gcp-vm-5",
+            "external_ip": false
         }
     ]
 }
