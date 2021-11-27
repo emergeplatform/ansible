@@ -22,4 +22,4 @@
 
 
 - name: add host to groupname
-  add_host: hostname={{ instance_name }} ansible_host={{ instance.networkInterfaces[0].networkIP }} groupname={{ instance_name }} instance={{ instance }}
+  add_host: hostname={{ instance_name }} ansible_host={{ instance.networkInterfaces[0].networkIP }} groupname=gcp-{{ zone }} instance={{ instance }}
