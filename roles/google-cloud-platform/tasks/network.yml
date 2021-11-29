@@ -27,8 +27,8 @@
     name: virtual-private-network-firewall
     network: "{{ network }}"
     allowed:
-    - ip_protocol: tcp icmp
-      ports: ['80','22', '5432', '111', '2049']
+    - ip_protocol: all
+      # ports: ['80','22', '5432', '111', '2049']
     target_tags:
       - virtual-private-network
     source_ranges: ['0.0.0.0/0']

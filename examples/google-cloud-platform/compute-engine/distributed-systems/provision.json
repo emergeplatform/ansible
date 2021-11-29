@@ -12,19 +12,19 @@
         },
         {
             "host": "gcp-vm-2",
-            "external_ip": false
+            "external_ip": true
         },
         {
             "host": "gcp-vm-3",
-            "external_ip": false
+            "external_ip": true
         },
         {
             "host": "gcp-vm-4",
-            "external_ip": false
+            "external_ip": true
         },
         {
             "host": "gcp-vm-5",
-            "external_ip": false
+            "external_ip": true
         }
     ]
 }
