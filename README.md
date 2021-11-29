@@ -11,4 +11,4 @@ It uses no agents and no additional custom security infrastructure, so it's easy
 
 # About
 
-This project contains a collection of ansble roles used to deploy modern compute, networking, and storage infrastrucue.
+This project contains a collection of ansble roles used to deploy modern compute, networking, and storage infrastructure.
