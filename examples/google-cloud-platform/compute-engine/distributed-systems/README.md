@@ -72,7 +72,7 @@ The playbook role will create a GCP VM like displayed below.
 
 
 ### External IP Address
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-vpc-ext-ips.png?raw=true)
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-vpc-external-ips.png?raw=true)
 
 ### GCP Hard Drive
 ![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-vm-disks.png?raw=true)
