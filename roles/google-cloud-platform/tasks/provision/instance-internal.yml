@@ -21,5 +21,9 @@
   register: instance
 
 
-- name: add host to groupname
-  add_host: hostname={{ instance_name }} ansible_host={{ instance.networkInterfaces[0].networkIP }} groupname=gcp-{{ zone }} instance={{ instance }}
+- name: add host to inventory cache
+  add_host: 
+    hostname: "{{ instance_name }} "
+    ansible_host: "{{ instance.networkInterfaces[0].networkIP }}" 
+    groupname: "gcp-{{ zone }}" 
+    instance: "{{ instance }}"

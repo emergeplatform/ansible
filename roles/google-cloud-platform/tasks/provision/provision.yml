@@ -13,9 +13,9 @@
   register: disk
 
 - import_tasks: instance-public.yml
-  when: external_ip == true
+  when: hasPublicIP == true
 
 - import_tasks: instance-internal.yml
-  when: external_ip == false
+  when: hasPublicIP == false
 
 

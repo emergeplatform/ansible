@@ -11,27 +11,61 @@
       file:
         path: ~/.ssh/known_hosts
         state: absent
+        
+    # - name: wait for ssh to come up
+    #   wait_for: host=gcp-vm-5 port=22 delay=10 timeout=60
+    #   when: operation == "provision"
     
   roles:
     - role: google-cloud-platform
 
 
-- name: configure load balancer
-  hosts: gcp-vm-1
-  connection: ssh
-  become: true
-  tasks:
+
 
 - name: configure application servers
-  hosts: gcp-vm-2,gcp-vm-3,gcp-vm-4
+  hosts: gcp-vm-2,gcp-vm-3,gcp-vm-4,gcp-vm-5
+  gather_facts: false
   connection: ssh
   become: true
   tasks:
-    - import_tasks: roles/google-cloud-platform/tasks/service-application-server.yml
+    - import_tasks: roles/google-cloud-platform/tasks/system/service-application-server.yml
 
-- name: configure databases
+- name: configure database and network file system
   hosts: gcp-vm-5
+  gather_facts: false
   connection: ssh
   become: true
   tasks:
-    - import_tasks: roles/google-cloud-platform/tasks/database-postgres-server.yml
+    - import_tasks: roles/google-cloud-platform/tasks/system/database-postgres-server.yml
+    - import_tasks: roles/google-cloud-platform/tasks/system/network-file-system.yml
+
+- name: configure network file system mounts
+  hosts: gcp-vm-2,gcp-vm-3,gcp-vm-4
+  gather_facts: false
+  connection: ssh
+  become: true
+  tasks:
+
+    - name: set nfs ip variable
+      set_fact:
+        nfs_ip: "{{ hostvars['gcp-vm-5'].instance.networkInterfaces[0].networkIP }}"
+
+    - name: configure nfs mounts
+      ignore_errors: true
+      shell: |
+        if [ ! -d /mnt/pgadmin ]; then
+          mkdir /mnt/pgadmin
+          mount {{ nfs_ip }}:/var/lib/pgadmin /mnt/pgadmin
+          mv /var/lib/pgadmin /var/lib/pgadmin.backup
+          ln -s /mnt/pgadmin /var/lib/pgadmin
+        else
+          umount /mnt/pgadmin
+          mount {{ nfs_ip }}:/var/lib/pgadmin /mnt/pgadmin
+        fi
+
+- name: configure load balancer
+  hosts: gcp-vm-1
+  gather_facts: false
+  connection: ssh
+  become: true
+  tasks:

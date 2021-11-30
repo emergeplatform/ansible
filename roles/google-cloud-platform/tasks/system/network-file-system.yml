@@ -1,0 +1,22 @@
+- name: install network file system
+  dnf:
+    name:
+      - epel-release #to install sqlight
+      - sqlite-devel
+      - nfs-utils
+      - nmap
+      - postgresql
+      - postgresql-server
+    state: present
+    
+- name: configure exports settings
+  lineinfile:
+    path: /etc/exports
+    line: /var/lib/pgadmin *(rw,no_root_squash)
+  ignore_errors: yes
+
+- name: restart network file system
+  service:
+    name: nfs-server
+    state: restarted
+    enabled: yes

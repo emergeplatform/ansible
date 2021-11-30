@@ -1,0 +1,29 @@
+---
+
+- name: rpm install pgadmin4 repository
+  shell: rpm -i https://ftp.postgresql.org/pub/pgadmin/pgadmin4/yum/pgadmin4-redhat-repo-2-1.noarch.rpm
+  register: shell
+  ignore_errors: yes
+
+- name: install application server
+  dnf:
+    name:
+      - nfs-utils
+      - policycoreutils-python-utils #needed by pgadmin4
+      - pgadmin4
+      - postgresql
+    state: present
+
+# run in non-interactive mode 
+- name: run pgadmin setup in non-interactive mode
+  shell: /usr/pgadmin4/bin/setup-web.sh --yes
+  register: shell
+  environment:
+    PGADMIN_SETUP_EMAIL: "{{ pg_admin_email }}"
+    PGADMIN_SETUP_PASSWORD: "{{ pg_admin_password }}"
+
+- name: restart httpd service
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes

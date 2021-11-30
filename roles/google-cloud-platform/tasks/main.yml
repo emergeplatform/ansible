@@ -2,24 +2,26 @@
 # tasks file for google-cloud-platform
 
 # register network, subnet, and firewall variables
-- import_tasks: network.yml
+- import_tasks: provision/network.yml
   when: operation == "provision"
 
 # provision all hosts
-- include_tasks: provision.yml
+- include_tasks: provision/provision.yml
   vars:
     instance_name: "{{ item.host }}"
-    external_ip: "{{ item.external_ip }}"
+    hasPublicIP: "{{ item.hasPublicIP }}"
+    machine_type: "{{ item.machine_type }}"
+    disk_size_gb: "{{ item.disk_size_gb }}"
   loop: "{{ hosts }}"
   when: operation == "provision"
 
 # decommission all hosts
-- include_tasks: decommission.yml
+- include_tasks: provision/decommission.yml
   vars:
     instance_name: "{{ item.host }}"
   loop: "{{ hosts }}"
   when: operation == "decommission"
 
 # remove virtual private network
-- import_tasks: network-delete.yml
+- import_tasks: provision/network-delete.yml
   when: operation == "decommission" and removeNetwork == true

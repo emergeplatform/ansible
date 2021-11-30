@@ -38,5 +38,20 @@
 # - name: wait for ssh to come up
 #   wait_for: host={{ address.address }} port=22 delay=10 timeout=60
 
-- name: add host to groupname
-  add_host: hostname={{ address.name }} ansible_host={{ address.address }} groupname=gcp-{{ zone }} instance={{ public_instance }}
+- name: add host to inventory cache
+  add_host: 
+    hostname: "{{ instance_name }}"
+    ansible_host: "{{ address.address }}" 
+    groupname: "gcp-{{ zone }}" 
+    instance: "{{ public_instance }}"
+
+- name: add hostname to ssh configuration
+  blockinfile:
+    path: ~/.ssh/config
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ instance_name }}"
+    block: |
+      Host {{ instance_name }}
+        HostName {{ address.address }}
+        User russell_page
+        IdentityFile ~/.ssh/id_rsa
+    
