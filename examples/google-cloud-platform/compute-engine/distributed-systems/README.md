@@ -68,12 +68,12 @@ ansible-playbook -e @provision.json -e operation=provision -e removeNetwork=fals
 
 The playbook role will create a GCP VM like displayed below.
 
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vm.png?raw=true)
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-vms.png?raw=true)
 
 
 ### External IP Address
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-expternal-ip-address.png?raw=true)
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-vpc-ext-ips.png?raw=true)
 
 ### GCP Hard Drive
-![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-test-hd.png?raw=true)
+![alt text](https://github.com/emergeplatform/ansible/blob/main/docs/images/gcp-vm-disks.png?raw=true)
 
